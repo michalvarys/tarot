@@ -183,7 +183,7 @@ const decks = {
 const deckName = Object.keys(decks)[1];
 const currentDeck = decks[deckName];
 var cards = currentDeck.cards;
-var back = `/images/${deckName}/${currentDeck.back}.${currentDeck.extension}`;
+var back = `images/${deckName}/${currentDeck.back}.${currentDeck.extension}`;
 //MODULE 2: Functions
 
 // create function to randomly select a number that corresponds with the number of cards available. Used Math.floor to remove remainder from the random calculation, found that i could never get the King Of Swords because 78 was an impossibility. opted for math.round in order to achieve that possibility.
