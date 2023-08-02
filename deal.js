@@ -5,10 +5,6 @@
 //create new object with cards
 var cards = new Array();
 
-//create variables to limit cards dealt to 7 & to test in console
-var cardsLeftToDeal = 30;
-var cardsDealt = 0;
-
 const decks = {
   common: {
     cards: [
@@ -183,6 +179,11 @@ const decks = {
 const deckName = Object.keys(decks)[1];
 const currentDeck = decks[deckName];
 var cards = currentDeck.cards;
+
+//create variables to limit cards dealt to 7 & to test in console
+var cardsLeftToDeal = cards.length - 1;
+var cardsDealt = 0;
+
 var back = `images/${deckName}/${currentDeck.back}.${currentDeck.extension}`;
 //MODULE 2: Functions
 
