@@ -5,10 +5,6 @@
 //create new object with cards
 var cards = new Array();
 
-//create variables to limit cards dealt to 7 & to test in console
-var cardsLeftToDeal = 30;
-var cardsDealt = 0;
-
 const decks = {
   common: {
     cards: [
@@ -183,6 +179,11 @@ const decks = {
 const deckName = Object.keys(decks)[1];
 const currentDeck = decks[deckName];
 var cards = currentDeck.cards;
+
+//create variables to limit cards dealt to 7 & to test in console
+var cardsLeftToDeal = cards.length - 1;
+var cardsDealt = 0;
+
 var back = `images/${deckName}/${currentDeck.back}.${currentDeck.extension}`;
 //MODULE 2: Functions
 
@@ -212,23 +213,22 @@ var dealCard = function (i) {
     return false;
   } else {
     //display card chosen in HTML by creating an image element
+    var wrp = document.createElement("div");
     var img = document.createElement("img");
+    wrp.style.display = "inline-block";
     var cardJustDealt = cards[i];
     var orient = randomOrient();
     $(img).addClass(cardJustDealt);
     // addClass for card's position (1-7)
     img.src = `images/${deckName}/${cards[i]}.${currentDeck.extension}`;
     img.alt = cards[i];
-
-    if (orient === 1) {
-      $(img).addClass("orientationDown");
-      document.getElementById("hand").appendChild(img);
-      removeCard(i);
-    } else {
-      $(img).addClass("orientationUp");
-      document.getElementById("hand").appendChild(img);
-      removeCard(i);
-    }
+    var number = document.createElement("center");
+    $(number).append(`${cardsDealt + 1}`);
+    $(wrp).append(number);
+    $(wrp).append(img);
+    $(img).addClass(orient === 1 ? "orientationDown" : "orientationUp");
+    removeCard(i);
+    document.getElementById("hand").appendChild(wrp);
   }
 };
 
