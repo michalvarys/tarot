@@ -212,23 +212,22 @@ var dealCard = function (i) {
     return false;
   } else {
     //display card chosen in HTML by creating an image element
+    var wrp = document.createElement("div");
     var img = document.createElement("img");
+    wrp.style.display = "inline-block";
     var cardJustDealt = cards[i];
     var orient = randomOrient();
     $(img).addClass(cardJustDealt);
     // addClass for card's position (1-7)
     img.src = `images/${deckName}/${cards[i]}.${currentDeck.extension}`;
     img.alt = cards[i];
-
-    if (orient === 1) {
-      $(img).addClass("orientationDown");
-      document.getElementById("hand").appendChild(img);
-      removeCard(i);
-    } else {
-      $(img).addClass("orientationUp");
-      document.getElementById("hand").appendChild(img);
-      removeCard(i);
-    }
+    var number = document.createElement("center");
+    $(number).append(`${cardsDealt + 1}`);
+    $(wrp).append(number);
+    $(wrp).append(img);
+    $(img).addClass(orient === 1 ? "orientationDown" : "orientationUp");
+    removeCard(i);
+    document.getElementById("hand").appendChild(wrp);
   }
 };
 
